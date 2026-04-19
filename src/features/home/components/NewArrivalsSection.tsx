@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
-import { products } from '../data/products'
-import ProductCard from '../components/ProductCard'
+import { products } from '@/shared/data/products'
+import ProductCard from '@/shared/ui/ProductCard'
 
 export default function NewArrivalsSection() {
   const newArrivals = products.filter((p) => p.badge === 'nouveau').slice(0, 4)

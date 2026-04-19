@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { ShoppingCart, Star, Zap, Heart } from 'lucide-react'
-import type { Product } from '../types'
-import { useCart } from '../context/CartContext'
+import type { Product } from '@/shared/types'
+import { useCart } from '@/features/cart/useCart'
 
 const BADGE_STYLES: Record<string, string> = {
   nouveau: 'bg-[#1e2a6e] text-white',

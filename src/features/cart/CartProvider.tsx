@@ -1,17 +1,6 @@
-import { createContext, useContext, useState, type ReactNode } from 'react'
-import type { CartItem, Product } from '../types'
-
-interface CartContextType {
-  items: CartItem[]
-  addToCart: (product: Product, quantity?: number) => void
-  removeFromCart: (productId: string) => void
-  updateQuantity: (productId: string, quantity: number) => void
-  clearCart: () => void
-  totalItems: number
-  totalPrice: number
-}
-
-const CartContext = createContext<CartContextType | undefined>(undefined)
+import { useState, type ReactNode } from 'react'
+import type { CartItem, Product } from '@/shared/types'
+import { CartContext } from '@/features/cart/cart-context'
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
@@ -61,10 +50,4 @@ export function CartProvider({ children }: { children: ReactNode }) {
       {children}
     </CartContext.Provider>
   )
-}
-
-export function useCart() {
-  const ctx = useContext(CartContext)
-  if (!ctx) throw new Error('useCart must be used within CartProvider')
-  return ctx
 }

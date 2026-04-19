@@ -1,12 +1,12 @@
 import { Routes, Route, useLocation } from 'react-router'
 import { useEffect } from 'react'
-import { CartProvider } from './context/CartContext'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import HomePage from './pages/HomePage'
-import ProductsPage from './pages/ProductsPage'
-import ProductDetailPage from './pages/ProductDetailPage'
-import CartPage from './pages/CartPage'
+import { CartProvider } from '@/features/cart/CartProvider'
+import Header from '@/shared/ui/Header'
+import Footer from '@/shared/ui/Footer'
+import HomePage from '@/features/home/HomePage'
+import ProductsPage from '@/features/catalog/ProductsPage'
+import ProductDetailPage from '@/features/catalog/ProductDetailPage'
+import CartPage from '@/features/cart/CartPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()

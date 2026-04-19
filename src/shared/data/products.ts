@@ -1,4 +1,4 @@
-import type { Product } from '../types'
+import type { Product } from '@/shared/types'
 
 // Using actual product images from the products folder
 const IMG = (filename: string) => `/src/assets/images/products/${filename}`

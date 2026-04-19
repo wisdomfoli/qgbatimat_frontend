@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import qgLogo from '../assets/icons/qg_batimat.png'
+import qgLogo from '@/assets/icons/qg_batimat.png'
 
 export default function ShareForCuresSection() {
   return (

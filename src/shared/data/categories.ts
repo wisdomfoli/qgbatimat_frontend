@@ -12,7 +12,7 @@ import {
   faWarehouse,
   faWrench,
 } from '@fortawesome/free-solid-svg-icons'
-import type { Category } from '../types'
+import type { Category } from '@/shared/types'
 
 export const categories: Category[] = [
   {

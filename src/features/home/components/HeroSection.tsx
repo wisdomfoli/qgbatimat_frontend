@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowRight } from 'lucide-react'
-import img_hero from '../assets/images/img_hero.webp'
+import img_hero from '@/assets/images/img_hero.webp'
 
 export default function HeroSection() {
   return (

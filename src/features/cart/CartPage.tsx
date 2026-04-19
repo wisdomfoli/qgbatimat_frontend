@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { Trash2, Plus, Minus, ChevronRight, ShoppingCart, Tag } from 'lucide-react'
 import { useState } from 'react'
-import { useCart } from '../context/CartContext'
+import { useCart } from '@/features/cart/useCart'
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, totalPrice } = useCart()

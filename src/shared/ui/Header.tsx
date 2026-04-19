@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import qgLogo from '../assets/icons/qg_batimat.png'
+import qgLogo from '@/assets/icons/qg_batimat.png'
 import { Link, useNavigate, useLocation } from 'react-router'
 import {
   Search,
@@ -10,8 +10,8 @@ import {
   CircleUserRound,
   ChevronDown,
 } from 'lucide-react'
-import { useCart } from '../context/CartContext'
-import { categories } from '../data/categories'
+import { useCart } from '@/features/cart/useCart'
+import { categories } from '@/shared/data/categories'
 
 export default function Header() {
   const { totalItems } = useCart()

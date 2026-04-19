@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, type Dispatch, type SetStateAction } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import {
   SlidersHorizontal,
@@ -9,9 +9,9 @@ import {
 } from 'lucide-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { products } from '../data/products'
-import { categories } from '../data/categories'
-import ProductCard from '../components/ProductCard'
+import { products } from '@/shared/data/products'
+import { categories } from '@/shared/data/categories'
+import ProductCard from '@/shared/ui/ProductCard'
 
 type SortOption = 'pertinence' | 'prix-asc' | 'prix-desc' | 'note' | 'newest'
 
@@ -30,55 +30,36 @@ const PRICE_RANGES = [
   { label: 'Plus de 100 000 FCFA', min: 100000, max: Infinity },
 ]
 
-export default function ProductsPage() {
-  const [params, setParams] = useSearchParams()
-  const [filtersOpen, setFiltersOpen] = useState(false)
-  const [sort, setSort] = useState<SortOption>('pertinence')
-  const [priceRange, setPriceRange] = useState<{ min: number; max: number } | null>(null)
-  const [minRating, setMinRating] = useState<number | null>(null)
-  const [openSections, setOpenSections] = useState({ categorie: true, prix: true, note: false })
+type FilterSectionsOpen = { categorie: boolean; prix: boolean; note: boolean }
 
-  const searchQuery = params.get('q') ?? ''
-  const categorySlug = params.get('categorie') ?? ''
-  const badgeFilter = params.get('badge') ?? ''
+interface ProductFiltersSidebarProps {
+  hasActiveFilters: boolean
+  clearFilters: () => void
+  toggleSection: (key: keyof FilterSectionsOpen) => void
+  openSections: FilterSectionsOpen
+  categorySlug: string
+  onSelectCategory: (slug: string) => void
+  priceRange: { min: number; max: number } | null
+  setPriceRange: Dispatch<SetStateAction<{ min: number; max: number } | null>>
+  minRating: number | null
+  setMinRating: Dispatch<SetStateAction<number | null>>
+  onApplyFilters: () => void
+}
 
-  const currentCategory = categories.find((c) => c.slug === categorySlug)
-
-  const filtered = useMemo(() => {
-    let list = [...products]
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase()
-      list = list.filter((p) =>
-        p.name.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q) ||
-        p.category.toLowerCase().includes(q) ||
-        p.brand.toLowerCase().includes(q)
-      )
-    }
-    if (categorySlug) list = list.filter((p) => p.categorySlug === categorySlug)
-    if (badgeFilter) list = list.filter((p) => p.badge === badgeFilter)
-    if (priceRange) list = list.filter((p) => p.price >= priceRange.min && p.price <= priceRange.max)
-    if (minRating) list = list.filter((p) => p.rating >= minRating)
-    if (sort === 'prix-asc') list.sort((a, b) => a.price - b.price)
-    else if (sort === 'prix-desc') list.sort((a, b) => b.price - a.price)
-    else if (sort === 'note') list.sort((a, b) => b.rating - a.rating)
-    else if (sort === 'newest') list = list.filter((p) => p.badge === 'nouveau').concat(list.filter((p) => p.badge !== 'nouveau'))
-    return list
-  }, [searchQuery, categorySlug, badgeFilter, priceRange, minRating, sort])
-
-  function clearFilters() {
-    setPriceRange(null)
-    setMinRating(null)
-    setParams({})
-  }
-
-  const hasActiveFilters = searchQuery || categorySlug || badgeFilter || priceRange || minRating
-
-  function toggleSection(key: keyof typeof openSections) {
-    setOpenSections((s) => ({ ...s, [key]: !s[key] }))
-  }
-
-  const SidebarContent = () => (
+function ProductFiltersSidebar({
+  hasActiveFilters,
+  clearFilters,
+  toggleSection,
+  openSections,
+  categorySlug,
+  onSelectCategory,
+  priceRange,
+  setPriceRange,
+  minRating,
+  setMinRating,
+  onApplyFilters,
+}: ProductFiltersSidebarProps) {
+  return (
     <div className="space-y-0">
       {/* Header */}
       <div className="flex items-center justify-between py-4 border-b border-zinc-200">
@@ -104,7 +85,7 @@ export default function ProductsPage() {
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setParams({ categorie: cat.slug })}
+                onClick={() => onSelectCategory(cat.slug)}
                 className="w-full text-left text-sm px-0 py-1.5 flex items-center justify-between group"
               >
                 <span className={`transition-colors ${categorySlug === cat.slug ? 'text-zinc-900 font-semibold' : 'text-zinc-500 hover:text-zinc-900'}`}>
@@ -170,7 +151,7 @@ export default function ProductsPage() {
       {/* Apply */}
       <div className="pt-4">
         <button
-          onClick={() => setFiltersOpen(false)}
+          onClick={onApplyFilters}
           className="w-full bg-[#e8541a] text-white py-3.5 rounded-full text-sm font-semibold hover:bg-[#cc4a17] transition-colors"
         >
           Appliquer le filtre
@@ -178,6 +159,69 @@ export default function ProductsPage() {
       </div>
     </div>
   )
+}
+
+export default function ProductsPage() {
+  const [params, setParams] = useSearchParams()
+  const [filtersOpen, setFiltersOpen] = useState(false)
+  const [sort, setSort] = useState<SortOption>('pertinence')
+  const [priceRange, setPriceRange] = useState<{ min: number; max: number } | null>(null)
+  const [minRating, setMinRating] = useState<number | null>(null)
+  const [openSections, setOpenSections] = useState<FilterSectionsOpen>({ categorie: true, prix: true, note: false })
+
+  const searchQuery = params.get('q') ?? ''
+  const categorySlug = params.get('categorie') ?? ''
+  const badgeFilter = params.get('badge') ?? ''
+
+  const currentCategory = categories.find((c) => c.slug === categorySlug)
+
+  const filtered = useMemo(() => {
+    let list = [...products]
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase()
+      list = list.filter((p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.brand.toLowerCase().includes(q)
+      )
+    }
+    if (categorySlug) list = list.filter((p) => p.categorySlug === categorySlug)
+    if (badgeFilter) list = list.filter((p) => p.badge === badgeFilter)
+    if (priceRange) list = list.filter((p) => p.price >= priceRange.min && p.price <= priceRange.max)
+    if (minRating) list = list.filter((p) => p.rating >= minRating)
+    if (sort === 'prix-asc') list.sort((a, b) => a.price - b.price)
+    else if (sort === 'prix-desc') list.sort((a, b) => b.price - a.price)
+    else if (sort === 'note') list.sort((a, b) => b.rating - a.rating)
+    else if (sort === 'newest') list = list.filter((p) => p.badge === 'nouveau').concat(list.filter((p) => p.badge !== 'nouveau'))
+    return list
+  }, [searchQuery, categorySlug, badgeFilter, priceRange, minRating, sort])
+
+  function clearFilters() {
+    setPriceRange(null)
+    setMinRating(null)
+    setParams({})
+  }
+
+  const hasActiveFilters = searchQuery || categorySlug || badgeFilter || priceRange || minRating
+
+  function toggleSection(key: keyof FilterSectionsOpen) {
+    setOpenSections((s) => ({ ...s, [key]: !s[key] }))
+  }
+
+  const sidebarProps: ProductFiltersSidebarProps = {
+    hasActiveFilters: Boolean(hasActiveFilters),
+    clearFilters,
+    toggleSection,
+    openSections,
+    categorySlug,
+    onSelectCategory: (slug) => setParams({ categorie: slug }),
+    priceRange,
+    setPriceRange,
+    minRating,
+    setMinRating,
+    onApplyFilters: () => setFiltersOpen(false),
+  }
 
   return (
     <main className="min-h-screen bg-white">
@@ -195,7 +239,7 @@ export default function ProductsPage() {
       <div className="max-w-7xl mx-auto px-4 py-4 flex gap-8">
         {/* Sidebar desktop */}
         <aside className="w-56 shrink-0 hidden lg:block">
-          <SidebarContent />
+          <ProductFiltersSidebar {...sidebarProps} />
         </aside>
 
         {/* Main content */}
@@ -317,7 +361,7 @@ export default function ProductsPage() {
               <button onClick={() => setFiltersOpen(false)} className="p-2 hover:bg-zinc-100 rounded-full"><X size={20} /></button>
             </div>
             <div className="px-5 py-4">
-              <SidebarContent />
+              <ProductFiltersSidebar {...sidebarProps} />
             </div>
           </div>
         </div>

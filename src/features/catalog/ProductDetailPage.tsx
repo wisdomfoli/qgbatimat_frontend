@@ -3,9 +3,9 @@ import { useParams, Link, useNavigate } from 'react-router'
 import { ShoppingCart, Star, ChevronRight, Minus, Plus } from 'lucide-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { products } from '../data/products'
-import { useCart } from '../context/CartContext'
-import ProductCard from '../components/ProductCard'
+import { products } from '@/shared/data/products'
+import { useCart } from '@/features/cart/useCart'
+import ProductCard from '@/shared/ui/ProductCard'
 
 const MOCK_REVIEWS = [
   { name: 'Samantha D.', verified: true, rating: 5, text: "Excellent produit ! La qualite est au rendez-vous et la livraison a ete rapide. Je suis tres satisfait de mon achat chez QG Batimat.", date: '14 Aout 2024' },

@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
-import { products } from '../data/products'
-import ProductCard from '../components/ProductCard'
+import { products } from '@/shared/data/products'
+import ProductCard from '@/shared/ui/ProductCard'
 
 export default function TopSellingSection() {
   const topSelling = products.filter((p) => p.badge === 'bestseller').slice(0, 4)
