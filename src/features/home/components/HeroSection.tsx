@@ -1,5 +1,5 @@
-import { Link } from 'react-router'
 import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router'
 import img_hero from '@/assets/images/img_hero.webp'
 
 export default function HeroSection() {
@@ -10,13 +10,13 @@ export default function HeroSection() {
         <div className="max-w-xl lg:max-w-none">
           {/* Main headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-900 leading-[1.05] mb-6">
-            Équipez vos chantiers avec{' '}
-            <span className="text-[#e8541a]">QG Batimat</span>
+            Équipez vos chantiers avec <span className="text-[#e8541a]">QG Batimat</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-zinc-600 text-lg leading-relaxed mb-8 max-w-lg">
-            Plus de 500 références de qualité professionnelle. Ciment, quincaillerie, outillage et matériaux sélectionnés pour vos projets de construction.
+            Plus de 500 références de qualité professionnelle. Ciment, quincaillerie, outillage et
+            matériaux sélectionnés pour vos projets de construction.
           </p>
 
           {/* CTA Buttons */}

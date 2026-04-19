@@ -21,10 +21,10 @@ export const products: Product[] = [
     unit: 'lot de 10 planches',
     brand: 'BOISCRAFT',
     specifications: {
-      'Dimensions': '30×20 cm',
-      'Épaisseur': '3 mm',
-      'Essence': 'Contreplaqué bouleau',
-      'Finition': 'Brut naturel',
+      Dimensions: '30×20 cm',
+      Épaisseur: '3 mm',
+      Essence: 'Contreplaqué bouleau',
+      Finition: 'Brut naturel',
     },
   },
   {
@@ -41,14 +41,14 @@ export const products: Product[] = [
     badge: 'promo',
     stock: 320,
     description:
-      'Barres de fer à béton haute adhérence nervurées, diamètre 12mm. Acier de qualité conforme aux normes européennes, traitement anti-corrosion. Indispensable pour l\'armature béton armé et structures porteuses.',
+      "Barres de fer à béton haute adhérence nervurées, diamètre 12mm. Acier de qualité conforme aux normes européennes, traitement anti-corrosion. Indispensable pour l'armature béton armé et structures porteuses.",
     unit: 'lot de 25 barres',
     brand: 'STEELFORT',
     specifications: {
-      'Diamètre': '12 mm',
-      'Longueur': '6 ml/barre',
-      'Type': 'Haute Adhérence (HA)',
-      'Norme': 'NF A 35-080-1',
+      Diamètre: '12 mm',
+      Longueur: '6 ml/barre',
+      Type: 'Haute Adhérence (HA)',
+      Norme: 'NF A 35-080-1',
     },
   },
   {
@@ -68,10 +68,10 @@ export const products: Product[] = [
     unit: 'bobine 50kg',
     brand: 'GALVAMAX',
     specifications: {
-      'Diamètre': '2.5 mm',
-      'Poids': '50 kg',
-      'Longueur': '≈ 800 ml',
-      'Galvanisation': 'Z275 g/m²',
+      Diamètre: '2.5 mm',
+      Poids: '50 kg',
+      Longueur: '≈ 800 ml',
+      Galvanisation: 'Z275 g/m²',
     },
   },
   {
@@ -87,14 +87,14 @@ export const products: Product[] = [
     badge: 'bestseller',
     stock: 78,
     description:
-      'Grillage à mailles hexagonales en acier galvanisé, parfait pour clôtures de basses-cours, enclos d\'animaux et délimitation de propriétés. Livré avec attaches de fixation incluses.',
+      "Grillage à mailles hexagonales en acier galvanisé, parfait pour clôtures de basses-cours, enclos d'animaux et délimitation de propriétés. Livré avec attaches de fixation incluses.",
     unit: 'rouleau 25m × 1.5m',
     brand: 'HEXAFENCE',
     specifications: {
-      'Maille': '25 mm',
-      'Fil': 'Ø 0.9 mm galvanisé',
-      'Dimensions': '25m × 1.5m',
-      'Poids': '≈ 12 kg',
+      Maille: '25 mm',
+      Fil: 'Ø 0.9 mm galvanisé',
+      Dimensions: '25m × 1.5m',
+      Poids: '≈ 12 kg',
     },
   },
   {
@@ -115,10 +115,10 @@ export const products: Product[] = [
     unit: 'lot de 6 pièces',
     brand: 'ERA',
     specifications: {
-      'Diamètre': '32 mm',
-      'Angle': '90°',
-      'Matière': 'PVC rigide',
-      'Norme': 'NF EN 1329-1',
+      Diamètre: '32 mm',
+      Angle: '90°',
+      Matière: 'PVC rigide',
+      Norme: 'NF EN 1329-1',
     },
   },
   {
@@ -137,10 +137,10 @@ export const products: Product[] = [
     unit: 'kit 50 pièces',
     brand: 'PLUMBKIT',
     specifications: {
-      'Contenu': '50 raccords variés',
-      'Diamètres': '20, 25, 32, 40, 50mm',
-      'Matière': 'PVC haute qualité',
-      'Joint': 'Étanchéité garantie',
+      Contenu: '50 raccords variés',
+      Diamètres: '20, 25, 32, 40, 50mm',
+      Matière: 'PVC haute qualité',
+      Joint: 'Étanchéité garantie',
     },
   },
   {
@@ -160,10 +160,10 @@ export const products: Product[] = [
     unit: 'feuille 6m',
     brand: 'GALVATOIT',
     specifications: {
-      'Longueur': '6 m',
+      Longueur: '6 m',
       'Largeur utile': '1.05 m',
-      'Épaisseur': '0.45 mm',
-      'Galvanisation': 'Z275 g/m²',
+      Épaisseur: '0.45 mm',
+      Galvanisation: 'Z275 g/m²',
     },
   },
   {
@@ -183,8 +183,8 @@ export const products: Product[] = [
     unit: 'rouleau 10m²',
     brand: 'THERMOSOL',
     specifications: {
-      'Surface': '10 m²/rouleau',
-      'Épaisseur': '5 mm',
+      Surface: '10 m²/rouleau',
+      Épaisseur: '5 mm',
       'R thermique': '1.25 m².K/W',
       'Pare-vapeur': 'Aluminium',
     },
@@ -207,10 +207,10 @@ export const products: Product[] = [
     unit: 'boîte 5kg',
     brand: 'NAILPRO',
     specifications: {
-      'Longueur': '40-60 mm',
-      'Diamètre': '3-4 mm',
-      'Finition': 'Galvanisé',
-      'Conditionnement': '≈ 800 clous/5kg',
+      Longueur: '40-60 mm',
+      Diamètre: '3-4 mm',
+      Finition: 'Galvanisé',
+      Conditionnement: '≈ 800 clous/5kg',
     },
   },
   {
@@ -231,9 +231,9 @@ export const products: Product[] = [
     brand: 'MULTICLOUDS',
     specifications: {
       'Poids total': '10 kg',
-      'Variétés': '8 types différents',
-      'Longueurs': '25 à 120 mm',
-      'Finitions': 'Brut et galvanisé',
+      Variétés: '8 types différents',
+      Longueurs: '25 à 120 mm',
+      Finitions: 'Brut et galvanisé',
     },
   },
   {
@@ -254,8 +254,8 @@ export const products: Product[] = [
     brand: 'CIMTOGO',
     specifications: {
       'Classe de résistance': '42.5 MPa',
-      'Poids': '50 kg',
-      'Norme': 'NF EN 197-1',
+      Poids: '50 kg',
+      Norme: 'NF EN 197-1',
       'Temps de prise': '2h initial',
     },
   },
@@ -275,10 +275,10 @@ export const products: Product[] = [
     unit: 'boîte 1.44m² (4 dalles)',
     brand: 'CERAMPLUS',
     specifications: {
-      'Dimensions': '60×60 cm',
-      'Épaisseur': '8.5 mm',
-      'Classement': 'PEI IV',
-      'Glissance': 'R10',
+      Dimensions: '60×60 cm',
+      Épaisseur: '8.5 mm',
+      Classement: 'PEI IV',
+      Glissance: 'R10',
     },
   },
 ]

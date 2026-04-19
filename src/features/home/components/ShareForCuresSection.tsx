@@ -8,7 +8,13 @@ export default function ShareForCuresSection() {
         <div className="flex flex-col items-center gap-8 lg:flex-row">
           <div className="flex-1">
             <div className="flex items-center gap-4">
-              <img src={qgLogo} alt="Logo QG Batimat" width={80} height={80} className="rounded-md bg-white p-1" />
+              <img
+                src={qgLogo}
+                alt="Logo QG Batimat"
+                width={80}
+                height={80}
+                className="rounded-md bg-white p-1"
+              />
               <p className="relative inline-block text-3xl md:text-4xl font-bold overflow-hidden">
                 <span className="shine-effect">QG Batimat</span>
               </p>
@@ -19,9 +25,10 @@ export default function ShareForCuresSection() {
               Ensemble, nous aidons les professionnels du BTP a construire plus vite et mieux.
             </h2>
             <p className="mb-6 text-lg text-white/95 leading-relaxed">
-              QG Batimat accompagne artisans, entreprises et particuliers avec un catalogue complet de materiaux,
-              quincaillerie, plomberie, electricite et outillage. Notre engagement: des produits fiables, des prix
-              transparents et une logistique adaptee aux realites des chantiers au Togo.
+              QG Batimat accompagne artisans, entreprises et particuliers avec un catalogue complet
+              de materiaux, quincaillerie, plomberie, electricite et outillage. Notre engagement:
+              des produits fiables, des prix transparents et une logistique adaptee aux realites des
+              chantiers au Togo.
             </p>
             <Link
               to="/produits"

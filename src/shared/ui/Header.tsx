@@ -1,15 +1,8 @@
-import { useState, useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ChevronDown, CircleUserRound, Menu, Search, ShoppingCart, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router'
 import qgLogo from '@/assets/icons/qg_batimat.png'
-import { Link, useNavigate, useLocation } from 'react-router'
-import {
-  Search,
-  ShoppingCart,
-  Menu,
-  X,
-  CircleUserRound,
-  ChevronDown,
-} from 'lucide-react'
 import { useCart } from '@/features/cart/useCart'
 import { categories } from '@/shared/data/categories'
 
@@ -62,11 +55,15 @@ export default function Header() {
           <div className="max-w-7xl mx-auto px-4 h-10 flex items-center justify-center relative">
             <p className="text-center">
               Livraison gratuite à Lomé dès 250 000 FCFA d'achat.{' '}
-              <Link to="/produits" className="underline underline-offset-2 font-semibold hover:text-zinc-300">
+              <Link
+                to="/produits"
+                className="underline underline-offset-2 font-semibold hover:text-zinc-300"
+              >
                 Commander maintenant
               </Link>
             </p>
             <button
+              type="button"
               onClick={() => setAnnouncementVisible(false)}
               className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors"
               aria-label="Fermer"
@@ -82,6 +79,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center gap-4 lg:gap-8">
           {/* Mobile menu button */}
           <button
+            type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-zinc-100 text-zinc-700 shrink-0"
             aria-label="Menu"
@@ -98,10 +96,15 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-6 shrink-0 text-sm font-medium text-zinc-700">
             <div ref={catRef} className="relative">
               <button
+                type="button"
                 onClick={() => setCatOpen(!catOpen)}
                 className="inline-flex items-center gap-1 hover:text-zinc-900 transition-colors py-1"
               >
-                Boutique <ChevronDown size={14} className={`transition-transform duration-200 ${catOpen ? 'rotate-180' : ''}`} />
+                Boutique{' '}
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${catOpen ? 'rotate-180' : ''}`}
+                />
               </button>
               {catOpen && (
                 <div className="absolute top-full left-0 mt-2 w-72 bg-white border border-zinc-200 rounded-2xl shadow-xl z-50 py-2 overflow-hidden">
@@ -125,7 +128,10 @@ export default function Header() {
             <Link to="/produits?badge=promo" className="hover:text-zinc-900 transition-colors py-1">
               Promotions
             </Link>
-            <Link to="/produits?badge=nouveau" className="hover:text-zinc-900 transition-colors py-1">
+            <Link
+              to="/produits?badge=nouveau"
+              className="hover:text-zinc-900 transition-colors py-1"
+            >
               Nouveautés
             </Link>
             <Link to="/produits" className="hover:text-zinc-900 transition-colors py-1">
@@ -136,7 +142,10 @@ export default function Header() {
           {/* Search */}
           <form onSubmit={handleSearch} className="hidden md:block flex-1 min-w-0 max-w-xl mx-auto">
             <div className="relative">
-              <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
+              <Search
+                size={16}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400"
+              />
               <input
                 type="text"
                 value={searchQuery}
@@ -174,18 +183,38 @@ export default function Header() {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 z-40 bg-black/40" onClick={() => setMobileOpen(false)}>
-          <div className="absolute left-0 top-0 bottom-0 w-72 bg-white shadow-xl overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <div className="lg:hidden fixed inset-0 z-40">
+          <button
+            type="button"
+            className="absolute inset-0 h-full w-full cursor-default border-0 bg-black/40 p-0"
+            aria-label="Fermer le menu"
+            onClick={() => setMobileOpen(false)}
+          />
+          <div
+            role="dialog"
+            aria-label="Menu de navigation"
+            className="absolute left-0 top-0 bottom-0 z-10 w-72 bg-white shadow-xl overflow-y-auto"
+            onMouseDown={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between px-5 h-16 border-b border-zinc-200">
               <Link to="/" onClick={() => setMobileOpen(false)}>
                 <img src={qgLogo} alt="QG Batimat" className="h-14 w-auto" />
               </Link>
-              <button onClick={() => setMobileOpen(false)} className="p-2 hover:bg-zinc-100 rounded-full"><X size={20} /></button>
+              <button
+                type="button"
+                onClick={() => setMobileOpen(false)}
+                className="p-2 hover:bg-zinc-100 rounded-full"
+              >
+                <X size={20} />
+              </button>
             </div>
             <div className="px-5 py-4">
               <form onSubmit={handleSearch} className="mb-5">
                 <div className="relative">
-                  <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
+                  <Search
+                    size={16}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"
+                  />
                   <input
                     type="text"
                     value={searchQuery}
@@ -197,12 +226,32 @@ export default function Header() {
               </form>
 
               <nav className="grid gap-1">
-                <Link to="/produits?badge=promo" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-zinc-700 hover:bg-zinc-100 font-medium">Promotions</Link>
-                <Link to="/produits?badge=nouveau" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-zinc-700 hover:bg-zinc-100 font-medium">Nouveautés</Link>
-                <Link to="/produits" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-zinc-700 hover:bg-zinc-100 font-medium">Marques</Link>
+                <Link
+                  to="/produits?badge=promo"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-zinc-700 hover:bg-zinc-100 font-medium"
+                >
+                  Promotions
+                </Link>
+                <Link
+                  to="/produits?badge=nouveau"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-zinc-700 hover:bg-zinc-100 font-medium"
+                >
+                  Nouveautés
+                </Link>
+                <Link
+                  to="/produits"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-zinc-700 hover:bg-zinc-100 font-medium"
+                >
+                  Marques
+                </Link>
               </nav>
 
-              <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mt-5 mb-2">Catégories</p>
+              <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mt-5 mb-2">
+                Catégories
+              </p>
               <div className="grid gap-0.5">
                 {categories.map((cat) => (
                   <Link

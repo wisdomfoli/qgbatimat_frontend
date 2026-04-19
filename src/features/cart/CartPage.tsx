@@ -1,6 +1,6 @@
-import { Link } from 'react-router'
-import { Trash2, Plus, Minus, ChevronRight, ShoppingCart, Tag } from 'lucide-react'
+import { ChevronRight, Minus, Plus, ShoppingCart, Tag, Trash2 } from 'lucide-react'
 import { useState } from 'react'
+import { Link } from 'react-router'
 import { useCart } from '@/features/cart/useCart'
 
 export default function CartPage() {
@@ -22,7 +22,10 @@ export default function CartPage() {
         <p className="text-zinc-500 mb-8 max-w-sm text-sm">
           Parcourez notre catalogue et ajoutez des produits pour commencer.
         </p>
-        <Link to="/produits" className="inline-flex items-center gap-2 bg-[#e8541a] hover:bg-[#cc4a17] text-white px-8 py-3.5 rounded-full font-semibold transition-colors text-sm">
+        <Link
+          to="/produits"
+          className="inline-flex items-center gap-2 bg-[#e8541a] hover:bg-[#cc4a17] text-white px-8 py-3.5 rounded-full font-semibold transition-colors text-sm"
+        >
           Continuer mes achats
         </Link>
       </main>
@@ -34,19 +37,25 @@ export default function CartPage() {
       <div className="max-w-7xl mx-auto px-4 py-6 md:py-10">
         {/* Breadcrumb */}
         <div className="flex items-center gap-1.5 text-sm text-zinc-400 mb-6">
-          <Link to="/" className="hover:text-zinc-700 transition-colors">Accueil</Link>
+          <Link to="/" className="hover:text-zinc-700 transition-colors">
+            Accueil
+          </Link>
           <ChevronRight size={14} />
           <span className="text-zinc-800 font-medium">Panier</span>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-black uppercase text-zinc-900 mb-8">Votre panier</h1>
+        <h1 className="text-3xl md:text-4xl font-black uppercase text-zinc-900 mb-8">
+          Votre panier
+        </h1>
 
         <div className="grid lg:grid-cols-[1fr_380px] gap-6">
           {/* Cart items */}
           <div className="bg-white border border-zinc-200 rounded-2xl overflow-hidden">
             {items.map(({ product, quantity }, idx) => {
               const discount = product.originalPrice
-                ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+                ? Math.round(
+                    ((product.originalPrice - product.price) / product.originalPrice) * 100,
+                  )
                 : null
               return (
                 <div
@@ -71,10 +80,15 @@ export default function CartPage() {
                             {product.name}
                           </h3>
                         </Link>
-                        <p className="text-xs text-zinc-400 mt-1">Marque : <span className="text-zinc-600">{product.brand}</span></p>
-                        <p className="text-xs text-zinc-400">Unite : <span className="text-zinc-600">{product.unit}</span></p>
+                        <p className="text-xs text-zinc-400 mt-1">
+                          Marque : <span className="text-zinc-600">{product.brand}</span>
+                        </p>
+                        <p className="text-xs text-zinc-400">
+                          Unite : <span className="text-zinc-600">{product.unit}</span>
+                        </p>
                       </div>
                       <button
+                        type="button"
                         onClick={() => removeFromCart(product.id)}
                         className="shrink-0 text-red-400 hover:text-red-600 p-1 hover:bg-red-50 rounded-lg transition-colors"
                         aria-label="Supprimer"
@@ -87,13 +101,17 @@ export default function CartPage() {
                       {/* Qty stepper */}
                       <div className="flex items-center border border-zinc-200 rounded-full overflow-hidden">
                         <button
+                          type="button"
                           onClick={() => updateQuantity(product.id, quantity - 1)}
                           className="w-8 h-8 flex items-center justify-center hover:bg-zinc-50 transition-colors text-zinc-600"
                         >
                           <Minus size={13} />
                         </button>
-                        <span className="w-8 text-center text-sm font-semibold text-zinc-800">{quantity}</span>
+                        <span className="w-8 text-center text-sm font-semibold text-zinc-800">
+                          {quantity}
+                        </span>
                         <button
+                          type="button"
                           onClick={() => updateQuantity(product.id, quantity + 1)}
                           className="w-8 h-8 flex items-center justify-center hover:bg-zinc-50 transition-colors text-zinc-600"
                         >
@@ -105,7 +123,7 @@ export default function CartPage() {
                       <div className="text-right">
                         {discount && (
                           <p className="text-xs text-zinc-400 line-through">
-                            {(product.originalPrice! * quantity).toLocaleString('fr-TG')} FCFA
+                            {((product.originalPrice ?? 0) * quantity).toLocaleString('fr-TG')} FCFA
                           </p>
                         )}
                         <p className="text-base font-bold text-zinc-900">
@@ -132,26 +150,36 @@ export default function CartPage() {
               <div className="space-y-3.5 text-sm">
                 <div className="flex justify-between text-zinc-600">
                   <span>Sous-total</span>
-                  <span className="font-semibold text-zinc-900">{totalPrice.toLocaleString('fr-TG')} FCFA</span>
+                  <span className="font-semibold text-zinc-900">
+                    {totalPrice.toLocaleString('fr-TG')} FCFA
+                  </span>
                 </div>
                 {promoApplied && (
                   <div className="flex justify-between text-zinc-600">
                     <span>Remise (-20%)</span>
-                    <span className="font-semibold text-red-500">-{discount.toLocaleString('fr-TG')} FCFA</span>
+                    <span className="font-semibold text-red-500">
+                      -{discount.toLocaleString('fr-TG')} FCFA
+                    </span>
                   </div>
                 )}
                 <div className="flex justify-between text-zinc-600">
                   <span>Frais de livraison</span>
-                  {deliveryFee === 0
-                    ? <span className="font-semibold text-green-600">Gratuit</span>
-                    : <span className="font-semibold text-zinc-900">{deliveryFee.toLocaleString('fr-TG')} FCFA</span>
-                  }
+                  {deliveryFee === 0 ? (
+                    <span className="font-semibold text-green-600">Gratuit</span>
+                  ) : (
+                    <span className="font-semibold text-zinc-900">
+                      {deliveryFee.toLocaleString('fr-TG')} FCFA
+                    </span>
+                  )}
                 </div>
               </div>
 
               <div className="border-t border-zinc-200 my-5 pt-5 flex justify-between items-center">
                 <span className="font-bold text-zinc-900">Total</span>
-                <span className="text-2xl font-black text-zinc-900">{total.toLocaleString('fr-TG')} <span className="text-sm font-semibold">FCFA</span></span>
+                <span className="text-2xl font-black text-zinc-900">
+                  {total.toLocaleString('fr-TG')}{' '}
+                  <span className="text-sm font-semibold">FCFA</span>
+                </span>
               </div>
 
               {/* Promo code */}
@@ -167,7 +195,10 @@ export default function CartPage() {
                   />
                 </div>
                 <button
-                  onClick={() => { if (promoCode.trim()) setPromoApplied(true) }}
+                  type="button"
+                  onClick={() => {
+                    if (promoCode.trim()) setPromoApplied(true)
+                  }}
                   className="bg-[#e8541a] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#cc4a17] transition-colors shrink-0"
                 >
                   Appliquer
@@ -175,11 +206,17 @@ export default function CartPage() {
               </div>
 
               {/* CTA */}
-              <button className="w-full flex items-center justify-center gap-2 bg-[#e8541a] hover:bg-[#cc4a17] text-white py-4 rounded-full font-semibold text-sm transition-colors">
+              <button
+                type="button"
+                className="w-full flex items-center justify-center gap-2 bg-[#e8541a] hover:bg-[#cc4a17] text-white py-4 rounded-full font-semibold text-sm transition-colors"
+              >
                 Passer la commande →
               </button>
 
-              <Link to="/produits" className="block text-center text-sm text-zinc-500 hover:text-zinc-900 transition-colors mt-4">
+              <Link
+                to="/produits"
+                className="block text-center text-sm text-zinc-500 hover:text-zinc-900 transition-colors mt-4"
+              >
                 Continuer mes achats
               </Link>
 

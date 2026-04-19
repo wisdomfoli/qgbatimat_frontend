@@ -1,16 +1,21 @@
-import { Routes, Route, useLocation } from 'react-router'
 import { useEffect } from 'react'
-import { CartProvider } from '@/features/cart/CartProvider'
-import Header from '@/shared/ui/Header'
-import Footer from '@/shared/ui/Footer'
-import HomePage from '@/features/home/HomePage'
-import ProductsPage from '@/features/catalog/ProductsPage'
-import ProductDetailPage from '@/features/catalog/ProductDetailPage'
+import { Route, Routes, useLocation } from 'react-router'
 import CartPage from '@/features/cart/CartPage'
+import { CartProvider } from '@/features/cart/CartProvider'
+import ProductDetailPage from '@/features/catalog/ProductDetailPage'
+import ProductsPage from '@/features/catalog/ProductsPage'
+import HomePage from '@/features/home/HomePage'
+import Footer from '@/shared/ui/Footer'
+import Header from '@/shared/ui/Header'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  useEffect(() => {
+    // Reference `pathname` so the effect re-runs on client-side navigation (Biome exhaustive-deps).
+    if (pathname) {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname])
   return null
 }
 

@@ -1,6 +1,13 @@
-import { Link } from 'react-router'
+import {
+  faFacebookF,
+  faInstagram,
+  faLinkedinIn,
+  faTiktok,
+  faXTwitter,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faXTwitter, faInstagram, faYoutube, faTiktok, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { Link } from 'react-router'
 
 const socials = [
   { icon: faFacebookF, url: 'https://facebook.com', name: 'Facebook' },
@@ -37,9 +44,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="sm:col-span-2 lg:col-span-1">
           <div className="flex flex-wrap gap-2 mb-6">
-            <span className="px-3 py-1 rounded-full border border-white/25 text-xs font-semibold text-white/90">Materiaux certifies</span>
-            <span className="px-3 py-1 rounded-full border border-white/25 text-xs font-semibold text-white/90">Livraison rapide</span>
-            <span className="px-3 py-1 rounded-full border border-white/25 text-xs font-semibold text-white/90">Support pro</span>
+            <span className="px-3 py-1 rounded-full border border-white/25 text-xs font-semibold text-white/90">
+              Materiaux certifies
+            </span>
+            <span className="px-3 py-1 rounded-full border border-white/25 text-xs font-semibold text-white/90">
+              Livraison rapide
+            </span>
+            <span className="px-3 py-1 rounded-full border border-white/25 text-xs font-semibold text-white/90">
+              Support pro
+            </span>
           </div>
 
           <div className="flex flex-wrap gap-3">
@@ -59,22 +72,56 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white mb-4">Navigation</h3>
+          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white mb-4">
+            Navigation
+          </h3>
           <ul className="space-y-2.5 text-sm text-white/85">
-            <li><Link to="/" className="hover:text-white transition-colors">Accueil</Link></li>
-            <li><Link to="/produits" className="hover:text-white transition-colors">Tous les produits</Link></li>
-            <li><Link to="/produits?badge=promo" className="hover:text-white transition-colors">Promotions</Link></li>
-            <li><Link to="/produits?badge=nouveau" className="hover:text-white transition-colors">Nouveautes</Link></li>
+            <li>
+              <Link to="/" className="hover:text-white transition-colors">
+                Accueil
+              </Link>
+            </li>
+            <li>
+              <Link to="/produits" className="hover:text-white transition-colors">
+                Tous les produits
+              </Link>
+            </li>
+            <li>
+              <Link to="/produits?badge=promo" className="hover:text-white transition-colors">
+                Promotions
+              </Link>
+            </li>
+            <li>
+              <Link to="/produits?badge=nouveau" className="hover:text-white transition-colors">
+                Nouveautes
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
           <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white mb-4">Services</h3>
           <ul className="space-y-2.5 text-sm text-white/85">
-            <li><a href="#" className="hover:text-white transition-colors">Conseil chantier</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Suivi de commande</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Livraison & retours</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Conditions generales</a></li>
+            <li>
+              <Link to="/services/conseil-chantier" className="hover:text-white transition-colors">
+                Conseil chantier
+              </Link>
+            </li>
+            <li>
+              <Link to="/commandes/suivi" className="hover:text-white transition-colors">
+                Suivi de commande
+              </Link>
+            </li>
+            <li>
+              <Link to="/livraison-retours" className="hover:text-white transition-colors">
+                Livraison & retours
+              </Link>
+            </li>
+            <li>
+              <Link to="/conditions-generales" className="hover:text-white transition-colors">
+                Conditions generales
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -82,10 +129,14 @@ export default function Footer() {
           <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white mb-4">Contact</h3>
           <ul className="space-y-3 text-sm text-white/90">
             <li>
-              <a href="tel:+22890000000" className="hover:text-white transition-colors">+228 90 00 00 00</a>
+              <a href="tel:+22890000000" className="hover:text-white transition-colors">
+                +228 90 00 00 00
+              </a>
             </li>
             <li>
-              <a href="mailto:contact@qgbatimat.tg" className="hover:text-white transition-colors">contact@qgbatimat.tg</a>
+              <a href="mailto:contact@qgbatimat.tg" className="hover:text-white transition-colors">
+                contact@qgbatimat.tg
+              </a>
             </li>
             <li>Lome, Togo</li>
           </ul>
@@ -103,7 +154,10 @@ export default function Footer() {
           <span>QG Batimat © 2026. Tous droits reserves.</span>
           <div className="flex flex-wrap items-center justify-center gap-2">
             {['Paiement securise', 'Devis express', 'Support 6j/7'].map((item) => (
-              <span key={item} className="px-3 py-1 rounded-full border border-white/25 text-[11px] font-semibold text-white/90">
+              <span
+                key={item}
+                className="px-3 py-1 rounded-full border border-white/25 text-[11px] font-semibold text-white/90"
+              >
                 {item}
               </span>
             ))}
