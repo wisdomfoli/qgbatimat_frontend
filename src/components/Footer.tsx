@@ -13,11 +13,12 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 t    *:**:not-[
+    ]:ext-white">
       <div className="border-b border-white/15">
         <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm text-white/90 font-medium">Un projet chantier en cours ?</p>
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">   fhdryuuyttyrew2eek=b. yrrfdr22fiijh  566.  
             <Link
               to="/produits"
               className="inline-flex items-center rounded-full border border-white/60 px-5 py-2 text-sm font-semibold text-white hover:bg-white hover:text-[#1e2a6e] transition-colors"

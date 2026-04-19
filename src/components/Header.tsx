@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import qgLogo from '../assets/icons/qg_batimat.png'
-import { Link, useNavigate } from 'react-router'
+import { Link, useNavigate, useLocation } from 'react-router'
 import {
   Search,
   ShoppingCart,
@@ -18,9 +18,23 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [catOpen, setCatOpen] = useState(false)
   const [announcementVisible, setAnnouncementVisible] = useState(true)
-  const [searchQuery, setSearchQuery] = useState('')
   const navigate = useNavigate()
+  const location = useLocation()
+  const [searchQuery, setSearchQuery] = useState(() => {
+    const params = new URLSearchParams(location.search)
+    return params.get('q') ?? ''
+  })
   const catRef = useRef<HTMLDivElement>(null)
+
+  // Live search: navigate on every keystroke
+  function handleSearchChange(value: string) {
+    setSearchQuery(value)
+    if (value.trim()) {
+      navigate(`/produits?q=${encodeURIComponent(value.trim())}`)
+    } else if (location.pathname === '/produits') {
+      navigate('/produits')
+    }
+  }
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -36,7 +50,6 @@ export default function Header() {
     e.preventDefault()
     if (searchQuery.trim()) {
       navigate(`/produits?q=${encodeURIComponent(searchQuery.trim())}`)
-      setSearchQuery('')
       setMobileOpen(false)
     }
   }
@@ -99,7 +112,7 @@ export default function Header() {
                       onClick={() => setCatOpen(false)}
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-zinc-50 text-sm text-zinc-700 transition-colors"
                     >
-                      <span className="flex h-5 w-5 items-center justify-center text-sm text-[#1e2a6e]">
+                      <span className="flex h-5 w-5 items-center justify-center text-sm text-black">
                         <FontAwesomeIcon icon={cat.icon} />
                       </span>
                       <span className="flex-1">{cat.name}</span>
@@ -127,7 +140,7 @@ export default function Header() {
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="Rechercher des produits..."
                 className="w-full h-10 rounded-full bg-zinc-100 border border-transparent pl-11 pr-4 text-sm text-zinc-700 placeholder-zinc-400 outline-none focus:border-[#e8541a] focus:bg-white transition-all"
               />
@@ -176,7 +189,7 @@ export default function Header() {
                   <input
                     type="text"
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e) => handleSearchChange(e.target.value)}
                     placeholder="Rechercher..."
                     className="w-full h-10 rounded-full bg-zinc-100 pl-10 pr-4 text-sm text-zinc-700 outline-none focus:bg-white border border-transparent focus:border-[#e8541a] transition-all"
                   />
