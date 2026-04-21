@@ -8,9 +8,9 @@ export default function HomePage() {
   return (
     <main className="bg-white text-zinc-900">
       <HeroSection />
+      <BrowseByCategorySection />
       <NewArrivalsSection />
       <TopSellingSection />
-      <BrowseByCategorySection />
       <ShareForCuresSection />
       {/* <TestimonialsSection /> */}
     </main>

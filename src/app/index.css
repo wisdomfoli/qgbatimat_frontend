@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 
 *,
 *::before,
@@ -43,4 +45,38 @@ button {
   100% {
     background-position: 200% center;
   }
+}
+
+.trending-slider .slick-prev,
+.trending-slider .slick-next {
+  z-index: 10;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.16);
+}
+
+.trending-slider .slick-prev:hover,
+.trending-slider .slick-next:hover {
+  background: #ffffff;
+}
+
+.trending-slider .slick-prev::before,
+.trending-slider .slick-next::before {
+  color: #111827;
+  font-size: 1.25rem;
+  opacity: 1;
+}
+
+.trending-slider .slick-track {
+  display: flex;
+}
+
+.trending-slider .slick-slide {
+  height: inherit;
+}
+
+.trending-slider .slick-slide > div {
+  height: 100%;
 }
