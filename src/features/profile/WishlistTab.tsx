@@ -65,9 +65,9 @@ export function WishlistTab() {
               </button>
               
               <Link to={`/produit/${product.slug}`} className="block aspect-square bg-gray-50 overflow-hidden relative">
-                {product.images && product.images[0] ? (
+                {product.image ? (
                   <img
-                    src={`http://localhost:8000/storage/${product.images[0].image_path}`}
+                    src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

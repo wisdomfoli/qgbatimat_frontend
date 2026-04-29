@@ -56,13 +56,13 @@ export function OrdersTab() {
             <div className="space-y-3">
               {order.items?.map((item: any) => (
                 <div key={item.id} className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-gray-100 rounded-md overflow-hidden flex-shrink-0">
-                    {item.product?.images?.[0] ? (
-                      <img src={`http://localhost:8000/storage/${item.product.images[0].image_path}`} alt="" className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">IMG</div>
-                    )}
-                  </div>
+                    <div className="w-16 h-16 bg-gray-100 rounded-md overflow-hidden flex-shrink-0">
+                      {item.product?.image ? (
+                        <img src={item.product.image} alt="" className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">IMG</div>
+                      )}
+                    </div>
                   <div className="flex-1">
                     <p className="font-medium text-gray-800 line-clamp-1">{item.product?.name}</p>
                     <p className="text-sm text-gray-500">Qté: {item.quantity}</p>

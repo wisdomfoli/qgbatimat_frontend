@@ -7,13 +7,13 @@ export const profileService = {
   },
 
   getOrders: async () => {
-    const { data } = await api.get('/orders')
-    return data
+    const response = await api.get('/orders')
+    return response.data.data
   },
   
   getWishlist: async () => {
-    const { data } = await api.get('/wishlist')
-    return data
+    const response = await api.get('/wishlist')
+    return response.data.data
   },
 
   toggleWishlist: async (productId: number) => {
